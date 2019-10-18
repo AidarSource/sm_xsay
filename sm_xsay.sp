@@ -5,8 +5,7 @@
 
 Handle g_hSynchronizer = null;
 
-public Plugin myinfo =
-{
+public Plugin myinfo = {
 	name = "sm_xsay",
 	author = "Switchback",
 	description = "Admin messages using game_text entity",
@@ -14,8 +13,7 @@ public Plugin myinfo =
 	url = "http://steamcommunity.com/id/switchwwe/"
 };
 
-public void OnPluginStart()
-{
+public void OnPluginStart() {
 	LoadTranslations("common.phrases");
 
 	g_hSynchronizer = CreateHudSynchronizer();
@@ -23,10 +21,8 @@ public void OnPluginStart()
 	RegAdminCmd("sm_xsay", Command_XSay, ADMFLAG_CHAT, "sm_xsay <message> - sends game text message at the top of mid to all players");
 }
 
-public Action Command_XSay(int client, int args)
-{
-	if (args < 1)
-	{
+public Action Command_XSay(int client, int args) {
+	if (args < 1) {
 		ReplyToCommand(client, "[SM] Usage: sm_xsay <message>");
 		return Plugin_Handled;
 	}
@@ -38,10 +34,8 @@ public Action Command_XSay(int client, int args)
 	Format(sBuffer, sizeof(sBuffer), "%N: %s", client, text);
 
 	SetHudTextParams(-1.0, 0.2, 5.0, 128, 255, 0, 255, 2, 0.5, 0.02, 0.3);
-	for (int i = 1; i < MaxClients; i++)
-	{
-		if (!IsClientInGame(i))
-		{
+	for (int i = 1; i < MaxClients; i++) {
+		if (!IsClientInGame(i)) {
 			continue;
 		}
 
